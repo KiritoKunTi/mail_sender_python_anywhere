@@ -1,0 +1,36 @@
+{% extends 'send/layout.html' %}
+
+
+{% block title %}Register{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="static/send/css/register.css">
+{% endblock %}
+
+
+{% block content %}
+    <div class="wrapper-register">
+        <div class="wrap-register">
+            
+            <h2>Register</h2>
+        
+            <form method="post">
+                {% csrf_token %}
+                <label>Username</label>
+                {{ form.username }}
+
+                <label>Password</label>
+                {{ form.password1 }}
+
+                <label>Confirm Password</label>
+                {{ form.password2 }}
+                <button type="submit">Register</button>
+            </form>
+        
+            <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+        </div>
+    </div>
+
+{% endblock %}
+
+

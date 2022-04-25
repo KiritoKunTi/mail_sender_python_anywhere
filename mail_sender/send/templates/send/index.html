@@ -1,0 +1,52 @@
+{% extends 'send/layout.html' %}
+{% load static %}
+
+
+{% block title %}Send Mail{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="static/send/css/index.css">
+
+{% endblock %}
+
+
+{% block content %}
+
+
+    <header class="header">
+        {% if request.user.is_authenticated %}
+            {{ request.user }}
+            <a href="{% url 'logout' %}" style="margin-left: 30px;">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+
+    </header>
+
+    <div class="wrapper-main">
+        <div class="main-text">Send Email</div>
+        <div class="wrap-main">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div style="margin-bottom: 20px;">
+                    {{ form.subject }}
+                </div>
+                <div style="margin-bottom: 20px; width: 505px; display: flex; justify-content: space-between;">
+                    {{ form.receiver_name }}
+                    {{ form.receiver_email }}
+                </div>
+                <div style="margin-bottom: 20px;">
+                    {{ form.message }}
+                </div>
+                <div style="margin-bottom: 20px;">
+                    {{ form.file }}
+                </div>
+
+
+                <button class="send-button" type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+

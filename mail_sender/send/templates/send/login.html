@@ -1,0 +1,29 @@
+{% extends 'send/layout.html' %}
+
+
+{% block title %}Login{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="static/send/css/login.css">
+{% endblock %}
+
+
+{% block content %}
+    <div class="wrapper-login">
+        <div class="wrap-login">
+
+            <h2>Login</h2>
+        
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Login</button>
+            </form>
+        
+            <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+        </div>
+
+    </div>
+
+{% endblock %}
+
